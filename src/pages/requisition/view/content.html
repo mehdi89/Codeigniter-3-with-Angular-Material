@@ -1,0 +1,35 @@
+<!-- <md-icon md-svg-icon="svg-3" class="avatar"></md-icon> -->
+<!--<div layout="row" layout-align="space-around">
+    <md-button class="md-raised">Add New</md-button>
+    <md-button class="md-raised md-warn">Delete</md-button>
+</div>
+
+<md-content layout-gt-sm="row" layout-padding>
+       	<div ui-grid="gridOptions" ui-grid-expandable class="grid"></div>
+    
+</md-content>-->
+
+<!--<md-toolbar>
+    <div class="md-toolbar-tools">
+        <div class="md-title">Requisition List</div>
+    </div>
+</md-toolbar>-->
+
+<md-content laout="column" flex>
+
+    <md-card ng-show="optionShow">
+        <div layout="row" layout-wrap class="checkboxes">
+            <md-checkbox ng-model="options.rowSelection">Row Selection</md-checkbox>
+            <md-checkbox ng-model="options.multiSelect">Multiple Selection</md-checkbox>
+            <md-checkbox ng-model="options.autoSelect">Auto Selection</md-checkbox>
+            <md-checkbox ng-model="options.decapitate">Decapitate</md-checkbox>
+            <md-checkbox ng-model="options.largeEditDialog">Lard Edit Dialogs</md-checkbox>
+            <md-checkbox ng-model="options.boundaryLinks">Pagination Boundary Links</md-checkbox>
+            <md-checkbox ng-model="options.limitSelect" ng-click="toggleLimitOptions()">Pagination Limit Select</md-checkbox>
+            <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
+        </div>
+    </md-card>
+
+    <md-card ng-include="'src/pages/requisition/view/templates/requisition_list.html'"></md-card>
+
+</md-content>
