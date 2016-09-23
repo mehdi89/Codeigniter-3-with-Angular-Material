@@ -7,6 +7,7 @@ class Department extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Department_model'); 
+		$this->load->model('Employee_model'); 
 	}
 	/**
 	 * Index Page for this controller.
@@ -90,17 +91,19 @@ class Department extends CI_Controller {
 
 	public function delete() {
 		$id = $this->uri->segment(4); 
-
-		$department = Department_model::find($id); 
-			$department->is_active = 0;
-
-	        $department->save();
-		if (!$department) {
-			$res = ['status' => false, 'message' => "No data found with ID " . $id]; 
-        } else {
-        	$res = ['status' => true, 'message' => "Data Deleted"]; 
-        }
-
+		$employee_data = Employee_model::where(['department_id' => $id])->get();; 
+		if ($employee_data->count() > 0) {
+			$res = ['status' => false, 'message' => "Sorry!! You can't delete this department."]; 
+		} else {
+			$department = Department_model::find($id); 
+	        $department->delete();
+			if (!$department) {
+				$res = ['status' => false, 'message' => "No data found with ID " . $id]; 
+	        } else {
+	        	$res = ['status' => true, 'message' => "Data Deleted"]; 
+	        }
+		}
+		
         echo json_encode($res); 
 	}
 }

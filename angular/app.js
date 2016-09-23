@@ -1,7 +1,20 @@
 angular
                                     .module('myApp', ['ngMaterial', 'ngMessages', 'ngAnimate', 'md.data.table', 'menu', 'about', 'employee', 'credits', 'department'])
-                                    .config(function($mdThemingProvider, $mdIconProvider){
-
+                                    .config(function($mdThemingProvider, $mdIconProvider, $mdToastProvider){
+                                        $mdToastProvider.addPreset('simpleToast', {
+  options: function() {
+    return {
+      template:
+        '<md-toast>' +
+          '<div class="md-toast-content">' +
+            'This is a custom preset' +
+          '</div>' +
+        '</md-toast>',
+      controllerAs: 'toast',
+      bindToController: true
+    };
+  }
+});
                                     $mdIconProvider
                                             .defaultIconSet("./assets/svg/avatars.svg", 128)
                                             .icon("menu", "./assets/svg/menu.svg", 24)

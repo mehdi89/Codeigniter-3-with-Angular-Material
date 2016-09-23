@@ -56,7 +56,7 @@
     </md-sidenav>
 
 
-    <div flex tabIndex="-1" role="main" class="">
+    <div flex tabIndex="-1" role="main" class=""  id="popupContainer">
 
         <md-toolbar layout="row" class="md-whiteframe-z1" id="header-toolbar" style="background-color: #{{menu.headerColor}}">
             <div flex hide-gt-sm>

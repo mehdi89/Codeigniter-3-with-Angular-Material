@@ -64,7 +64,7 @@
         <td md-cell>{{i.id}}</td>
         <td md-cell>{{i.name}}</td>
         <td md-cell><span ng-if="i.is_active == 1">Active</span><span ng-if="i.is_active == 0">Inactive</span></td>
-        <td md-cell><md-button class="md-raised" ng-click="editItem(i)">Edit</md-button><md-button class="md-raised" ng-click="deleteItem(i)">Delete</md-button></td>
+        <td md-cell><md-button class="md-raised" ng-click="editItem(i)">Edit</md-button><md-button class="md-raised" ng-click="deleteItem($event,i)">Delete</md-button></td>
         <!-- <td md-cell>
           <md-select ng-model="dessert.type" placeholder="Other">
             <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>

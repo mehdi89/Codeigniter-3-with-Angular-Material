@@ -4,14 +4,14 @@
   // Prepare the 'purpose' module for subsequent registration of controllers and delegates
   angular.module('department', [ 'ngMaterial', 'ngRoute' ])
   .controller('DepartmentController', [
-           '$http', '$scope', '$mdEditDialog', '$q', '$timeout', DepartmentController
+           '$http', '$scope', '$mdEditDialog', '$q', '$timeout', '$mdDialog', '$mdToast', DepartmentController
        ]);
 
   /**
    * Controller
    * @constructor
    */
-  function DepartmentController($http, $scope, $mdEditDialog, $q, $timeout) {
+  function DepartmentController($http, $scope, $mdEditDialog, $q, $timeout, $mdDialog, $mdToast) {
     var self = this;
     $scope.pageName = "Department"; 
     $scope.selectedTab = 0; 
@@ -139,6 +139,7 @@
                     //error message
 
                 }
+                $mdToast.show($mdToast.simple().textContent(res.message).position('top right'));
             }) 
         }
 
@@ -155,13 +156,34 @@
             }); 
         }
 
-        $scope.deleteItem = function (i) {
-            $http.get(department_url + 'delete/' + i.id).success(function(res){
-                if (res.status) {
-                    $scope.selectedTab = 0; 
-                    $scope.loadData(); 
-                }
-            }); 
+       $scope.deleteItem = function (ev, i) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Are you sure ?')
+                  // .textContent('All of the banks have agreed to forgive you your debts.')
+                  // .ariaLabel('Lucky day')
+                  .targetEvent(ev)
+                  .ok('Please do it!')
+                  .cancel('Not Now');
+
+            $mdDialog.show(confirm).then(function() {
+                //if user confirmed
+                  $http.get(department_url + 'delete/' + i.id).success(function(res){
+                    if (res.status) {
+                        $scope.selectedTab = 0; 
+                        $scope.loadData(); 
+
+                    } else {
+    
+                    }
+                    $mdToast.show($mdToast.simple().textContent(res.message).position('top right'));
+                }); 
+            }, function() {
+              //if use click on cancel 
+
+            });
+          
+            
         }
   }
 })();
