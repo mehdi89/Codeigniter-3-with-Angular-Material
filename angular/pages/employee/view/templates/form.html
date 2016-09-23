@@ -1,0 +1,70 @@
+<form name="employeeForm" ng-submit="save(employee)">
+      <div layout="row" class="input-row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Employee ID</label>
+          <input placeholder="12345"
+                   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5" name="employee_id" ng-model="employee.employee_id" />
+
+          <div ng-messages="employeeForm.employee_id.$error" role="alert" multiple>
+            <div ng-message="required">Employee ID is required.</div>
+            <div ng-message="pattern">That doesn't look like a valid Employee ID. should be numaric only</div>
+            <div ng-message="md-maxlength" class="my-message">
+                Don't use the long version silly...we don't need to be that big...
+              </div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Name</label>
+          <input required name="name" ng-model="employee.name"  md-maxlength="150" />
+
+          <div ng-messages="employeeForm.name.$error">
+            <div ng-message="required">Name is required.</div>
+            <div ng-message="md-maxlength">Name should be under 150 Character.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Designation</label>
+          <input required name="designation" ng-model="employee.designation" />
+
+          <div ng-messages="employeeForm.designation.$error">
+            <div ng-message="required">Designation is required.</div>
+          </div>
+        </md-input-container>
+</div>
+<div layout="row" class="input-row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Department</label>
+          <md-select name="department_id" ng-model="employee.department_id" required>
+                <md-option ng-value="dep.id" ng-repeat="dep in departmentList">{{dep.name}}</md-option>
+              </md-select>
+          <div ng-messages="employeeForm.department_id.$error">
+            <div ng-message="required">Department is Required</div>
+          </div>
+        </md-input-container>
+<!-- 
+        <div flex="5" hide-xs hide-sm>
+      
+        </div>
+ -->
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Is Active</label>
+          <md-select name="is_active" ng-model="employee.is_active" required>
+                <md-option value="1">Active</md-option>
+                <md-option value="0">Inactive</md-option>
+              </md-select>
+          <div ng-messages="employeeForm.is_active.$error">
+            <div ng-message="required">Status is Required</div>
+          </div>
+        </md-input-container>
+
+      </div>
+
+<div layout="row">
+          <div flex-gt-sm="80">
+          
+        </div>
+              <md-button class="md-raised" type="submit">Submit</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+          </div>
+    </form>

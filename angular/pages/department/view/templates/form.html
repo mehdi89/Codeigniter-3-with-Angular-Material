@@ -1,0 +1,37 @@
+<form name="deptForm" ng-submit="save(department)">
+      <div layout-gt-sm="row">
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Name</label>
+          <input required name="name" ng-model="department.name" />
+
+          <div ng-messages="deptForm.name.$error">
+            <div ng-message="required">Name is required.</div>
+          </div>
+        </md-input-container>
+
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Is Active</label>
+          <md-select name="is_active" ng-model="department.is_active" required>
+                <md-option value="1">Active</md-option>
+                <md-option value="0">Inactive</md-option>
+              </md-select>
+          <div ng-messages="deptForm.is_active.$error">
+            <div ng-message="required">Status is Required</div>
+          </div>
+        </md-input-container>
+
+      </div>
+
+<div layout="row">
+          <div flex-gt-sm="80">
+          
+        </div>
+              <md-button class="md-raised" type="submit">Submit</md-button>
+              <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+          </div>
+    </form>

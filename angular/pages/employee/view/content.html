@@ -1,0 +1,15 @@
+<md-content laout="column" flex>
+
+</md-content>
+<md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab">
+      <md-tab label="list">
+        <md-content class="md-padding">
+        <md-card ng-include="'angular/pages/employee/view/templates/list.html'"></md-card>
+        </md-content>
+      </md-tab>
+      <md-tab label="add new" ng-click="loadDepartmentList()">
+      <md-content layout-padding>
+      <md-card ng-include="'angular/pages/employee/view/templates/form.html'"></md-card>
+  </md-content>
+      </md-tab>
+    </md-tabs>

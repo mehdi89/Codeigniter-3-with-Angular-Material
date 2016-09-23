@@ -7,7 +7,6 @@ class Department extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Department_model'); 
-		$this->load->model('User'); 
 	}
 	/**
 	 * Index Page for this controller.
@@ -27,7 +26,7 @@ class Department extends CI_Controller {
 	public function all()
 	{
 		//get all department 
-		$all = Department_model::where(['is_active' => 1])->get(); 
+		$all = Department_model::orderBy('is_active', 'desc')->get(); 
 
 		$count = $all->count(); 
 		//check if data found
@@ -76,6 +75,7 @@ class Department extends CI_Controller {
 	}
 
 	public function get() {
+		//get the id from url segment
 		$id = $this->uri->segment(4); 
 
 		$data = Department_model::find($id); 
